@@ -17,19 +17,19 @@ $nbTacheAss3 = 0;
 
 $TacheStat1 = $TacheDao->findByStatut(1); 
 foreach($TacheStat1 as $tache) { 
-    if($tache->getNumProjet()==$currentProjet){$nbTacheStat1 = $nbTacheStat1 +1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat1 = $nbTacheStat1 +1;}
     if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss1 = $nbTacheAss1 + 1;}
 }
 
 $TacheStat2 = $TacheDao->findByStatut(2); 
 foreach($TacheStat2 as $tache) { 
-    if($tache->getNumProjet()==$currentProjet){$nbTacheStat2 = $nbTacheStat2 +1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat2 = $nbTacheStat2 +1;}
     if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss2 = $nbTacheAss2 + 1;}
 }
 
 $TacheStat3 = $TacheDao->findByStatut(3); 
 foreach($TacheStat3 as $tache) { 
-    if($tache->getNumProjet()==$currentProjet){$nbTacheStat3 = $nbTacheStat3 +1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat3 = $nbTacheStat3 +1;}
     if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss3 = $nbTacheAss3 + 1;}
 }
 ?>
@@ -55,8 +55,7 @@ foreach($TacheStat3 as $tache) {
 </div>
 
 <div class="container" style="padding-top:100px; padding-bottom:462px;">
-    
-    <h1><?php echo $_SESSION["currentProjet"]; ?></h1>
+    <h1><?php echo $_SESSION["current_projet"]; ?></h1>
     <h3 style="font-style: italic; color:grey;">Numero de projet : <?php echo $_SESSION["numProjet"]; ?></h3>
     
     <div class="dropdown"> <!--Menu d'Ajout de user au projet-->
@@ -96,7 +95,7 @@ foreach($TacheStat3 as $tache) {
                         <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#ff7f7f">
                             <div class="panel-heading" style="background-color:#ff7f7f">
                                 <input type="text" name="titreAdd" id="titreAdd" placeholder="titre" required>
-                                <input type="hidden" name="numProjetAdd" value="<?=$currentProjet ?>">
+                                <input type="hidden" name="numProjetAdd" value="<?=$_SESSION["numProjet"] ?>">
                                 <button type="submit" class="btn btn-primary" style="background-color:#ff7f7f; border-style:none">
                                     <i class="glyphicon glyphicon-ok" style="color:#af0000"></i>
                                 </button>
@@ -113,7 +112,7 @@ foreach($TacheStat3 as $tache) {
             <?php //Cherche les tâche à faire
                 $tacheStat1 = $TacheDao->findByStatut(1); 
                 foreach($tacheStat1 as $tache) {
-                    if($tache->getNumProjet()==$currentProjet){ //si c'est le bon projet, on ajoute la tâche a la liste
+                    if($tache->getNumProjet()==$_SESSION["numProjet"]){ //si c'est le bon projet, on ajoute la tâche a la liste
             ?> 
             <?php if(!isset($_REQUEST['idEdit'])or $tache->getID()!=$_REQUEST['idEdit']){?>
                 <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#ff7f7f">
@@ -174,7 +173,7 @@ foreach($TacheStat3 as $tache) {
             <?php //Cherche les tâche en cours
                 $tacheStat2 = $TacheDao->findByStatut(2);
                 foreach($tacheStat2 as $tache) {
-                    if($tache->getNumProjet()==$currentProjet){ //si c'est le bon projet, on ajoute la tâche a la liste
+                    if($tache->getNumProjet()==$_SESSION["numProjet"]){ //si c'est le bon projet, on ajoute la tâche a la liste
             ?>
                 <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#fffc7f">
                     <div class="panel-heading" style="background-color:#fffc7f">
@@ -204,7 +203,7 @@ foreach($TacheStat3 as $tache) {
             <?php //cherche les tâches terminées
                 $tacheStat3 = $TacheDao->findByStatut(3);
                 foreach($tacheStat3 as $tache) {
-                    if($tache->getNumProjet()==$currentProjet){ //si c'est le bon projet, on ajoute la tâche a la liste
+                    if($tache->getNumProjet()==$_SESSION["numProjet"]){ //si c'est le bon projet, on ajoute la tâche a la liste
             ?>
                 <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#7fff7f">
                     <div class="panel-heading" style="background-color:#7fff7f">

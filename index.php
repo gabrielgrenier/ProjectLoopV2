@@ -1,14 +1,17 @@
 <?php
 require_once('./modele/classes/Taches.php');
+require_once('./modele/classes/Projets.php');
 require_once('./modele/TacheDAO.php');
+require_once('./modele/ProjetDAO.php');
 $TacheDao = new TacheDAO();
+$ProjetDao = new ProjetDAO();
 /* changer sa avec les sessions*/
 $currentProjet = "1";
 if (!ISSET($_SESSION)) {session_start();}
 if (!ISSET($_SESSION["connecte"])){$_SESSION["connecte"]= false;}
 if (!ISSET($_SESSION["current_user"])){$_SESSION["current_user"]= "";}
-$_SESSION["currentProjet"] = "Projet 1";
-$_SESSION["numProjet"] = 1;
+if (!ISSET($_SESSION["current_projet"])){$_SESSION["current_projet"]= "";}
+if (!ISSET($_SESSION["numProjet"])){$_SESSION["numProjet"]= "";}
 require_once('./controleur/ActionBuilder.php');
 if (ISSET($_REQUEST["action"]))
 	{
