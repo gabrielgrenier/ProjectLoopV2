@@ -9,6 +9,6 @@ ProjectLoop est un site de gestion de projet, vous pouvez donc :
 * Voir les statistiques de votre projet
 * Notifications de vos tâches en retard  
 
-*ceci est la version 2 de notre git*  
-**Cree par Gabriel Braun-Grenier et Maxime Young**  
+*Ceci est la version 2 de notre git*  
+**Créé par @gabrielgrenier et @maxlego28**  
 ###### 10/04/2018
