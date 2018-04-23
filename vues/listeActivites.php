@@ -5,7 +5,7 @@
 */
 if($_SESSION["connecte"]==false){header('Location: ?action=default');}
 
-if(isset($_REQUEST["action"]) and $_REQUEST["action"]=="confirmAddTache"){
+if(isset($_REQUEST["action"]) and $_REQUEST["action"]!="affActivites" and $_REQUEST["action"]!="editTache"){ //pour avoir le meme url
     header('Location: ?action=affActivites');
 }
 $nbTacheStat1 = 0;
@@ -123,6 +123,7 @@ foreach($TacheStat3 as $tache) {
                                 <a href='?action=editTache&idEdit=<?=$tache->getId()?>' title='Modifier' style="color:#af0000"><span class="glyphicon glyphicon-edit"></span></a></p>
                             <?php } ?>
                     </div>
+                    
                     <div class="panel-body">
                         <p><?=$tache->getDescription()?></p>
                         <?php if($tache->getDateDebut()!=null or $tache->getDateDebut()!=""){?>
@@ -130,20 +131,22 @@ foreach($TacheStat3 as $tache) {
                         <?php } ?>
                         <p>Date de fin : <?=$tache->getDateFin()?></p>
                         <?php  
-                            if($tache->getUserAssigned()==$_SESSION["current_user"]) { ?> <!--Seulement le user assigner peut deplacer une tâche-->
+                            if($tache->getUserAssigned()==$_SESSION["current_user"]) { ?> <!--Si le user connecté correspond au user de la tâche -->
                             <a href='?action=desattribuer&id=<?=$tache->getId()?>' title='Se désatribuer' style="color:#ff7f7f"><span class="glyphicon glyphicon-warning-sign"></span></a>
                             <a href='?action=moveEC&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#ff7f7f"><span class="glyphicon glyphicon-arrow-right"></span></a>
                         <?php } 
-                            else{ //si le user n'est pas attribuer a une tâche, il peut se l'attribuer, peut être changer pour si une tâche n'est pas assigner (est assigné à)
+                            else if($tache->getUserAssigned()==""){ //si la tâche est attribuée à personne
                         ?>
                             <a href='?action=attribuer&id=<?=$tache->getId()?>&user=<?php echo $_SESSION["current_user"];?>' title="S'attribuer la tâche" style="color:#ff7f7f"><span class="glyphicon glyphicon-user"></span></a>
-                            <?php echo $tache->getUserAssigned()?>
-                        <?php } ?>
-                    </div>      
+                        <?php } 
+                            else{echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";} //si la tâche est déjà attribuée
+                        ?>
+                    </div> 
+                    
                 </div>
             <?php
                     }
-                if(isset($_REQUEST['idEdit']) and $tache->getID()==$_REQUEST['idEdit']){ ?> <!--Si on a une tache a edit-->
+                if(isset($_REQUEST['idEdit']) and $tache->getID()==$_REQUEST['idEdit'] and $tache->getUserAssigned()==$_SESSION["current_user"]){ ?> <!--Si on a une tache a edit + verifie que cest le bon user-->
                     <form action="?action=confirmEditTache&id=<?=$tache->getId()?>" method="post">
                         <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#ff7f7f">
                             <div class="panel-heading" style="background-color:#ff7f7f">
@@ -184,7 +187,11 @@ foreach($TacheStat3 as $tache) {
                         <?php if($tache->getUserAssigned()==$_SESSION["current_user"]) { ?>
                             <a href='?action=moveAF&id=<?=$tache->getId()?>' title='Déplacer vers "À Faire"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-left"></span></a>
                             <a href='?action=moveT&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-right"></span></a>
-                        <?php } ?>
+                        <?php } 
+                            if($tache->getUserAssigned()!=$_SESSION["current_user"]){
+                                echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";
+                            }
+                        ?>
                     </div>
                 </div> 
             <?php
@@ -210,7 +217,11 @@ foreach($TacheStat3 as $tache) {
                         <?php if($tache->getUserAssigned()==$_SESSION["current_user"]) { ?> <!--Seulement le user attribuer peut interagir avec ses tâches terminées-->
                         <a href='?action=moveEC&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#7fff7f"><span class="glyphicon glyphicon-arrow-left"></span></a>
                         <a href='?action=deleteTache&id=<?=$tache->getId()?>' title='Supprimer la tâche' style="color:#7fff7f"><span class="glyphicon glyphicon-trash"></span></a>
-                        <?php } ?>
+                        <?php } 
+                        if($tache->getUserAssigned()!=$_SESSION["current_user"]){
+                                echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";
+                            }
+                        ?>
                     </div>
                 </div> 
             <?php
