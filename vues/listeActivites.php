@@ -187,7 +187,11 @@ foreach($TacheStat3 as $tache) {
                         <?php if($tache->getUserAssigned()==$_SESSION["current_user"]) { ?>
                             <a href='?action=moveAF&id=<?=$tache->getId()?>' title='Déplacer vers "À Faire"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-left"></span></a>
                             <a href='?action=moveT&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-right"></span></a>
-                        <?php } ?>
+                        <?php } 
+                            if($tache->getUserAssigned()!=$_SESSION["current_user"]){
+                                echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";
+                            }
+                        ?>
                     </div>
                 </div> 
             <?php
@@ -213,7 +217,11 @@ foreach($TacheStat3 as $tache) {
                         <?php if($tache->getUserAssigned()==$_SESSION["current_user"]) { ?> <!--Seulement le user attribuer peut interagir avec ses tâches terminées-->
                         <a href='?action=moveEC&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#7fff7f"><span class="glyphicon glyphicon-arrow-left"></span></a>
                         <a href='?action=deleteTache&id=<?=$tache->getId()?>' title='Supprimer la tâche' style="color:#7fff7f"><span class="glyphicon glyphicon-trash"></span></a>
-                        <?php } ?>
+                        <?php } 
+                        if($tache->getUserAssigned()!=$_SESSION["current_user"]){
+                                echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";
+                            }
+                        ?>
                     </div>
                 </div> 
             <?php
