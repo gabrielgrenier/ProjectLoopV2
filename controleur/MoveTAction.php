@@ -6,8 +6,10 @@ class MoveTAction implements Action {
         $dao = new TacheDAO();
         $id = $_REQUEST['id'];
         $tache = $dao->find($id);
-        $tache->setStatut(3);
-        $dao->update($tache);
+        if($tache!=null and $tache->getUserAssigned()==$_SESSION["current_user"]){
+            $tache->setStatut(3);
+            $dao->update($tache);
+        }
 		return "listeActivites";
 	}
 }

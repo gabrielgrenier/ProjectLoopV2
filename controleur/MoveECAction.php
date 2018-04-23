@@ -7,9 +7,11 @@ class MoveECAction implements Action {
         date_default_timezone_set('America/Toronto');
         $id = $_REQUEST['id'];
         $tache = $dao->find($id);
-        $tache->setStatut(2);
-        $tache->setDateDebut(date("Y/m/d"));
-        $dao->update($tache);
+        if($tache!=null and $tache->getUserAssigned()==$_SESSION["current_user"]){
+            $tache->setStatut(2);
+            $tache->setDateDebut(date("Y/m/d"));
+            $dao->update($tache);
+        }
 		return "listeActivites";
 	}
 }
