@@ -10,5 +10,5 @@ ProjectLoop est un site de gestion de projet, vous pouvez donc :
 * Notifications de vos tâches en retard  
 
 *Ceci est la version 2 de notre git*  
-**Créé par @gabrielgrenier et @maxlego28**  
+**Créé par Gabriel Braun-Grenier et Maxime Young**  
 ###### 10/04/2018
