@@ -6,7 +6,7 @@ class AttribuerAction implements Action {
         $dao = new TacheDAO();
         $id = $_REQUEST['id'];
         $tache = $dao->find($id);
-        if($tache->getUserAssigned()==""){ //si la tâche est attribuer a personne
+        if($tache!= null and $tache->getUserAssigned()==""){ //si la tâche est attribuer a personne
             $tache->setUserAssigned($_REQUEST['user']);
             $dao->update($tache);
             return "listeActivites";
