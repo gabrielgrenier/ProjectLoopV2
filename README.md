@@ -1,5 +1,5 @@
 # ProjectLoop
-## fonctionnalité : 
+## Fonctionnalité : 
 ProjectLoop est un site de gestion de projet, vous pouvez donc :
 * Créer un nouveau projet
 * Ajouter des utilisateurs à vos projets
@@ -7,7 +7,8 @@ ProjectLoop est un site de gestion de projet, vous pouvez donc :
 * Attribuer des tâches à vos utilisateurs
 * Classer vos tâches selon leurs statuts (À Faire, En Cours, Terminées)
 * Voir les statistiques de votre projet
-* Notifications de vos tâches en retard__
-*ceci est la version 2 de notre git*__
+* Notifications de vos tâches en retard
+<br />
+*ceci est la version 2 de notre git* <br />
 **Cree par Gabriel Braun-Grenier et Maxime Young**
 ###### 10/04/2018
