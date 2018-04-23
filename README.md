@@ -8,6 +8,7 @@ ProjectLoop est un site de gestion de projet, vous pouvez donc :
 * Classer vos tâches selon leurs statuts (À Faire, En Cours, Terminées)
 * Voir les statistiques de votre projet
 * Notifications de vos tâches en retard  
+
 *ceci est la version 2 de notre git*  
 **Cree par Gabriel Braun-Grenier et Maxime Young**  
 ###### 10/04/2018
