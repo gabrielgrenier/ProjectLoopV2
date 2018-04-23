@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="menu" <?php
-if($_SESSION["connecte"]==false){ ?> style="position:absolute; box-shadow: none;"<?php } ?>>
+if($_SESSION["connecte"]){ ?> style="position:absolute; box-shadow: none;"<?php } ?>>
 
     <div class="container-fluid">
         <div clas="navbar-header">
