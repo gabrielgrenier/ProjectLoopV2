@@ -15,8 +15,37 @@ include("./vues/menuPasCo.php");
 ?>
 <br/><br/>
 <div class="container">
-    <h1>Mes Projets :</h1>
-    <a href="?action=affActivites">Projet1</a>
+    <h1 style="padding-top:2em;">Mes Projets :</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nom du Projet :</th>
+                <th>Numero du Projet :</th>
+                <th>Votre Role :</th>
+                <th>Action :</th>
+            </tr>
+        </thead>
+    <?php //Cherche les tâche à faire
+        $projetTest = $ProjetDao->findAll(); 
+                foreach($projetTest as $projet) {
+                    if($_SESSION["current_user"]==$projet->getEmail()){           
+        ?>
+        <tr>
+            <td><?=$projet->getNomProjet();?></td>
+            <td><?=$projet->getNumProjet();?></td>
+            <td><?=$projet->getRole();?></td>
+            <td><a href="?action=setProjet&numPro=<?=$projet->getNumProjet();?>&nomPro=<?=$projet->getNomProjet()?>" title="afficher projet"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <?php if($projet->getRole()=="admin"){?><a href="" title="supprimer le projet"><span class="glyphicon glyphicon-trash"></span></a>
+                                                    <a href="" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
+            <?php }?></td>
+        </tr>
+    <?php
+                    }
+                    
+                }
+             
+    ?>
+    </table>
 </div>
 </body>
 </html>
