@@ -28,7 +28,7 @@ include("./vues/menuPasCo.php");
     <?php //Cherche les tâche à faire
         $projetTest = $ProjetDao->findAll(); 
                 foreach($projetTest as $projet) {
-                    if($_SESSION["current_user"]==$projet->getEmail()){           
+                    if($_SESSION["current_email"]==$projet->getEmail()){           
         ?>
         <tr>
             <td><?=$projet->getNomProjet();?></td>

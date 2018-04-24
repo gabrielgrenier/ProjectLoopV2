@@ -28,7 +28,8 @@ class LoginAction implements Action {
 			}
 		/*$_SESSION["connecté"] = $_REQUEST["username"];*/
 		$_SESSION["connecte"] = true;
-		$_SESSION["current_user"] = $user->getEmail();
+		$_SESSION["current_email"] = $user->getEmail();
+        $_SESSION["current_user"] = $user->getUsername();
 		return "default";
 	}
 	public function valide()

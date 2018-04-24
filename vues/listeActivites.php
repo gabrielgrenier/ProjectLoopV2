@@ -17,20 +17,26 @@ $nbTacheAss3 = 0;
 
 $TacheStat1 = $TacheDao->findByStatut(1); 
 foreach($TacheStat1 as $tache) { 
-    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat1 = $nbTacheStat1 +1;}
-    if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss1 = $nbTacheAss1 + 1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){
+        $nbTacheStat1 = $nbTacheStat1 +1;
+        if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss1 = $nbTacheAss1 + 1;}
+    }
 }
 
 $TacheStat2 = $TacheDao->findByStatut(2); 
 foreach($TacheStat2 as $tache) { 
-    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat2 = $nbTacheStat2 +1;}
-    if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss2 = $nbTacheAss2 + 1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){
+        $nbTacheStat2 = $nbTacheStat2 +1;
+        if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss2 = $nbTacheAss2 + 1;}
+    }
 }
 
 $TacheStat3 = $TacheDao->findByStatut(3); 
 foreach($TacheStat3 as $tache) { 
-    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat3 = $nbTacheStat3 +1;}
-    if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss3 = $nbTacheAss3 + 1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){
+        $nbTacheStat3 = $nbTacheStat3 +1;
+        if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss3 = $nbTacheAss3 + 1;}
+    }
 }
 ?>
 
@@ -55,7 +61,10 @@ foreach($TacheStat3 as $tache) {
 </div>
 
 <div class="container" style="padding-top:100px; padding-bottom:462px;">
-    <h1><?php echo $_SESSION["current_projet"]; ?></h1>
+    <h1>
+        <a href="?action=affProjets" title="Retour à la liste de projet"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <?php echo $_SESSION["current_projet"]; ?>
+    </h1>
     <h3 style="font-style: italic; color:grey;">Numero de projet : <?php echo $_SESSION["numProjet"]; ?></h3>
     
     <div class="dropdown"> <!--Menu d'Ajout de user au projet-->
@@ -63,7 +72,7 @@ foreach($TacheStat3 as $tache) {
               Ajouter des utilisateurs
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <form action="?action=addUser" method="post">
+            <form action="?action=addUser&num=<?=$_SESSION["numProjet"]?>&nom=<?=$_SESSION["current_projet"]?>" method="post">
                 Nom de l'utilisateur : <input type="text" name="addUsername" /> <br/>
                 <input type="submit" value="Ajouter"/>
             </form>

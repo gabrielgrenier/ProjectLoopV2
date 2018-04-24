@@ -74,7 +74,24 @@ class ProjetDAO{
             }             
             return $projet;
     }
-    
+    public static function addUserProjet($user, $num, $nom){
+            $db = Database::getInstance();
+            try {
+                $pstmt = $db->prepare("INSERT INTO userProjets (NUMPROJET, EMAIL, ROLEUSER, NOMPROJET)".
+                                                  " VALUES (:num, :em, :ro, :nom)");
+                $pstmt->execute(array(':num' => $num,
+                                      ':em' => $user->getEmail(),
+                                      ':ro' => "user",
+                                      ':nom' => $nom,
+                                     ));
+
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+    }  
     
     
     
