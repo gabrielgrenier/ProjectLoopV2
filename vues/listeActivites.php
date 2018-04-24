@@ -61,7 +61,10 @@ foreach($TacheStat3 as $tache) {
 </div>
 
 <div class="container" style="padding-top:100px; padding-bottom:462px;">
-    <h1><?php echo $_SESSION["current_projet"]; ?></h1>
+    <h1>
+        <a href="?action=affProjets" title="Retour à la liste de projet"><span class="glyphicon glyphicon-menu-left"></span></a>
+        <?php echo $_SESSION["current_projet"]; ?>
+    </h1>
     <h3 style="font-style: italic; color:grey;">Numero de projet : <?php echo $_SESSION["numProjet"]; ?></h3>
     
     <div class="dropdown"> <!--Menu d'Ajout de user au projet-->
