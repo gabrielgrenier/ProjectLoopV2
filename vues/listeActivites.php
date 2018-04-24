@@ -72,7 +72,7 @@ foreach($TacheStat3 as $tache) {
               Ajouter des utilisateurs
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
-            <form action="?action=addUser" method="post">
+            <form action="?action=addUser&num=<?=$_SESSION["numProjet"]?>&nom=<?=$_SESSION["current_projet"]?>" method="post">
                 Nom de l'utilisateur : <input type="text" name="addUsername" /> <br/>
                 <input type="submit" value="Ajouter"/>
             </form>

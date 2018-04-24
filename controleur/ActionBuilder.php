@@ -16,6 +16,7 @@ require_once('./controleur/AddTacheAction.php');
 require_once('./controleur/ConfirmAddTache.php');
 require_once('./controleur/DeleteTacheAction.php');
 require_once('./controleur/setProjetAction.php');
+require_once('./controleur/AddUserAction.php');
 
 
 class ActionBuilder{
@@ -72,6 +73,9 @@ class ActionBuilder{
             break;
             case "setProjet":
                 return new setProjetAction();
+            break;
+            case "addUser":
+                return new addUserAction();
             break;
 			default :
 				return new DefaultAction();

@@ -108,8 +108,7 @@ class TacheDAO {
             }           
 			return $n;			
     }
-    public static function create($tache)
-    {
+    public static function create($tache){
             $db = Database::getInstance();
             try {
                 $pstmt = $db->prepare("INSERT INTO taches (ID, TITRE, DESCRIPTION, NUMPROJET, USERASSIGNED, STATUT, DATEDEBUT, DATEFIN)".
