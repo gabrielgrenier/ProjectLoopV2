@@ -16,6 +16,7 @@ include("./vues/menuPasCo.php");
 <br/><br/>
 <div class="container">
     <h1 style="padding-top:2em;">Mes Projets :</h1>
+    <button class="btn btn-default">Ajouter une tâche</button>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -25,6 +26,13 @@ include("./vues/menuPasCo.php");
                 <th>Action :</th>
             </tr>
         </thead>
+        <tr>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><a title="Confirmer"><span class="glyphicon glyphicon-ok"></span></a>
+                <a title="Annuler"><span class="glyphicon glyphicon-remove"></span></a></td>
+        </tr>
     <?php //Cherche les tâche à faire
         $projetTest = $ProjetDao->findAll(); 
                 foreach($projetTest as $projet) {
