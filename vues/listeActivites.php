@@ -17,20 +17,26 @@ $nbTacheAss3 = 0;
 
 $TacheStat1 = $TacheDao->findByStatut(1); 
 foreach($TacheStat1 as $tache) { 
-    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat1 = $nbTacheStat1 +1;}
-    if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss1 = $nbTacheAss1 + 1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){
+        $nbTacheStat1 = $nbTacheStat1 +1;
+        if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss1 = $nbTacheAss1 + 1;}
+    }
 }
 
 $TacheStat2 = $TacheDao->findByStatut(2); 
 foreach($TacheStat2 as $tache) { 
-    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat2 = $nbTacheStat2 +1;}
-    if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss2 = $nbTacheAss2 + 1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){
+        $nbTacheStat2 = $nbTacheStat2 +1;
+        if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss2 = $nbTacheAss2 + 1;}
+    }
 }
 
 $TacheStat3 = $TacheDao->findByStatut(3); 
 foreach($TacheStat3 as $tache) { 
-    if($tache->getNumProjet()==$_SESSION["numProjet"]){$nbTacheStat3 = $nbTacheStat3 +1;}
-    if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss3 = $nbTacheAss3 + 1;}
+    if($tache->getNumProjet()==$_SESSION["numProjet"]){
+        $nbTacheStat3 = $nbTacheStat3 +1;
+        if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss3 = $nbTacheAss3 + 1;}
+    }
 }
 ?>
 
