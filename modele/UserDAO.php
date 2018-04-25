@@ -5,7 +5,6 @@ include_once('/classes/User.php');
 
 class UserDAO {
     public static function find($email){
-        echo $email;
     	$db = Database::getInstance();
 
     	$pstmt = $db->prepare("SELECT * FROM User WHERE email = :x");
@@ -28,6 +27,24 @@ class UserDAO {
 
         return NULL;
 
+    }
+
+    public static function isEmail($email){
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("SELECT * FROM User WHERE email = :x");
+        $pstmt->execute(array(':x' => $email));
+        $result = $pstmt->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+
+        public static function isUsername($email){
+        $db = Database::getInstance();
+
+        $pstmt = $db->prepare("SELECT * FROM User WHERE email = :x");
+        $pstmt->execute(array(':x' => $email));
+        $result = $pstmt->fetch(PDO::FETCH_OBJ);
+        return $result;
     }
 
     public static function findByUsername($username){
