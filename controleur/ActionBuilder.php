@@ -17,7 +17,7 @@ require_once('./controleur/ConfirmAddTache.php');
 require_once('./controleur/DeleteTacheAction.php');
 require_once('./controleur/setProjetAction.php');
 require_once('./controleur/AddUserAction.php');
-
+require_once('./controleur/AffProfilsAction.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -25,7 +25,9 @@ class ActionBuilder{
 		{
             case "connecter" :
 				return new LoginAction();
-			break; 
+			break;
+            case "affProfils":
+                return new AffProfilsAction();
 			case "deconnecter" :
 				return new LogoutAction();
 			    break;

@@ -24,7 +24,7 @@ if($_SESSION["connecte"]){ ?> style="position:absolute; box-shadow: none;"<?php 
                 else{ ?>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="#" href="?action=affProjets">Mes Projets</a></li>
-                        <li><a class="#" href="?action=modifProjet">Mon Profile</a></li>
+                        <li><a class="#" href="?action=affProfils">Mon Profile</a></li>
                         <li><a class="#" href="?action=deconnecter">Se Déconnecter</a></li>
                     </ul>
             <?php }?>
