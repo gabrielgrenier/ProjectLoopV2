@@ -11,12 +11,12 @@
     
 <body>
 <?php 
-include("./vues/menuPasCo.php");
+//include("./vues/menuPasCo.php");
 ?>
 <br/><br/>
 <div class="container">
     <h1 style="padding-top:2em;">Mes Projets :</h1>
-    <button class="btn btn-default" onclick="affCreateProjet()" id="btnAddProjet">Ajouter une tâche</button>
+    <button class="btn btn-default" onclick="affCreateProjet()" id="btnAddProjet">Ajouter un Projet</button>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -27,11 +27,14 @@ include("./vues/menuPasCo.php");
             </tr>
         </thead>
         <tr style="display:none" id="createProjet">
-            <td><input type="text" id="addNomPro"></td>
-            <td><input type="text" id="addNumPro"></td>
-            <td><input type="text" id="addRolePro"></td>
-            <td><a title="Confirmer"><span class="glyphicon glyphicon-ok"></span></a>
-                <a title="Annuler" onclick="hideCreateProjet()"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <form action="?action=addProjet" method="post" id="formAddPro">
+                <td><input type="text" id="addNomPro" name="nom" required></td>
+                <td><input type="text" id="addNumPro" name="num" required></td>
+                <input type="hidden" name="user" value="<?=$_SESSION["current_user"]?>">
+                <td>admin</td>
+                <td><a title="Confirmer" onclick="document.getElementById('formAddPro').submit()"><span class="glyphicon glyphicon-ok"></span></a>
+                    <a title="Annuler" onclick="hideCreateProjet()"><span class="glyphicon glyphicon-remove"></span></a></td>
+            </form>
         </tr>
     <?php //Cherche les tâche à faire
         $projetTest = $ProjetDao->findAll(); 

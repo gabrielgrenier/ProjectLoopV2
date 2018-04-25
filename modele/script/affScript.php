@@ -18,7 +18,6 @@ function hideCreateProjet() {
     document.getElementById("createProjet").style.display = "none";
     document.getElementById("addNomPro").value = "";
     document.getElementById("addNumPro").value = "";
-    document.getElementById("addRolePro").value = "";
     document.getElementById("btnAddProjet").style.display = "inline";
 }
 function affStats() {
