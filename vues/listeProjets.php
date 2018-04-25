@@ -10,8 +10,9 @@
 </head>
     
 <body>
-<?php 
-//include("./vues/menuPasCo.php");
+<?php
+    if(isset($_REQUEST["action"]) and $_REQUEST["action"]!="affProjets"){header('Location: ?action=affProjets');}
+    include("./vues/menuPasCo.php");
 ?>
 <br/><br/>
 <div class="container">
@@ -28,11 +29,11 @@
         </thead>
         <tr style="display:none" id="createProjet">
             <form action="?action=addProjet" method="post" id="formAddPro">
-                <td><input type="text" id="addNomPro" name="nom" required></td>
-                <td><input type="text" id="addNumPro" name="num" required></td>
+                <td><input type="text" id="addNomPro" name="nom"></td>
+                <td><input type="text" id="addNumPro" name="num"></td>
                 <input type="hidden" name="user" value="<?=$_SESSION["current_user"]?>">
                 <td>admin</td>
-                <td><a title="Confirmer" onclick="document.getElementById('formAddPro').submit()"><span class="glyphicon glyphicon-ok"></span></a>
+                <td><a title="Confirmer" onclick="validationProjet()"><span class="glyphicon glyphicon-ok"></span></a>
                     <a title="Annuler" onclick="hideCreateProjet()"><span class="glyphicon glyphicon-remove"></span></a></td>
             </form>
         </tr>
@@ -62,4 +63,5 @@
 </html>
 <?php
     include("./modele/script/affScript.php");
+    include("./modele/script/validationScript.php");
 ?>
