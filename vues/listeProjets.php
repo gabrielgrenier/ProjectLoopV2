@@ -16,7 +16,7 @@ include("./vues/menuPasCo.php");
 <br/><br/>
 <div class="container">
     <h1 style="padding-top:2em;">Mes Projets :</h1>
-    <button class="btn btn-default">Ajouter une tâche</button>
+    <button class="btn btn-default" onclick="affCreateProjet()" id="btnAddProjet">Ajouter une tâche</button>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -26,12 +26,12 @@ include("./vues/menuPasCo.php");
                 <th>Action :</th>
             </tr>
         </thead>
-        <tr>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+        <tr style="display:none" id="createProjet">
+            <td><input type="text" id="addNomPro"></td>
+            <td><input type="text" id="addNumPro"></td>
+            <td><input type="text" id="addRolePro"></td>
             <td><a title="Confirmer"><span class="glyphicon glyphicon-ok"></span></a>
-                <a title="Annuler"><span class="glyphicon glyphicon-remove"></span></a></td>
+                <a title="Annuler" onclick="hideCreateProjet()"><span class="glyphicon glyphicon-remove"></span></a></td>
         </tr>
     <?php //Cherche les tâche à faire
         $projetTest = $ProjetDao->findAll(); 
@@ -57,3 +57,6 @@ include("./vues/menuPasCo.php");
 </div>
 </body>
 </html>
+<?php
+    include("./modele/script/affScript.php");
+?>

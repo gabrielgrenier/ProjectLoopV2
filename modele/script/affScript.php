@@ -1,8 +1,11 @@
 <script>
 function affCreateTache() {
-    var x = document.getElementById("createTache");
-        x.style.display = "block";
+    document.getElementById("createTache").style.display = "block";
     document.getElementById("btnAddTache").style.display = "none";
+}
+function affCreateProjet() {
+    document.getElementById("createProjet").style.display = "table-row";
+    document.getElementById("btnAddProjet").style.display = "none";
 }
 function hideCreateTache() {
     document.getElementById("createTache").style.display = "none";
@@ -10,6 +13,13 @@ function hideCreateTache() {
     document.getElementById("descriptionAdd").value = "";
     document.getElementById("dateAdd").value = null;
     document.getElementById("btnAddTache").style.display = "inline";
+}
+function hideCreateProjet() {
+    document.getElementById("createProjet").style.display = "none";
+    document.getElementById("addNomPro").value = "";
+    document.getElementById("addNumPro").value = "";
+    document.getElementById("addRolePro").value = "";
+    document.getElementById("btnAddProjet").style.display = "inline";
 }
 function affStats() {
     var x = document.getElementById("statsProjet");
