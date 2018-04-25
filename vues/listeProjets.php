@@ -29,8 +29,8 @@
         </thead>
         <tr style="display:none" id="createProjet">
             <form action="?action=addProjet" method="post" id="formAddPro">
-                <td><input type="text" id="addNomPro" name="nom"></td>
-                <td><input type="text" id="addNumPro" name="num"></td>
+                <td><input type="text" id="addNomPro" name="nom" maxlength="20" placeholder=""></td>
+                <td><input type="text" id="addNumPro" name="num" maxlength="5"></td>
                 <input type="hidden" name="user" value="<?=$_SESSION["current_user"]?>">
                 <td>admin</td>
                 <td><a title="Confirmer" onclick="validationProjet()"><span class="glyphicon glyphicon-ok"></span></a>
