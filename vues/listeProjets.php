@@ -11,7 +11,7 @@
     
 <body>
 <?php
-    if(isset($_REQUEST["action"]) and $_REQUEST["action"]!="affProjets"){header('Location: ?action=affProjets');}
+    if(isset($_REQUEST["action"]) and $_REQUEST["action"]!="affProjets" and $_REQUEST["action"]!="editProjet"){header('Location: ?action=affProjets');}
     include("./vues/menuPasCo.php");
 ?>
 <br/><br/>
@@ -48,14 +48,12 @@
             <td><?=$projet->getRole();?></td>
             <td><a href="?action=setProjet&numPro=<?=$projet->getNumProjet();?>&nomPro=<?=$projet->getNomProjet()?>" title="afficher projet"><span class="glyphicon glyphicon-eye-open"></span></a>
             <?php if($projet->getRole()=="admin"){?><a href="" title="supprimer le projet"><span class="glyphicon glyphicon-trash"></span></a>
-                                                    <a href="" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
+                                                    <a href="?action=editProjet&numEdit=<?=$projet->getNumProjet()?>" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
             <?php }?></td>
         </tr>
     <?php
-                    }
-                    
+                    }  
                 }
-             
     ?>
     </table>
 </div>
