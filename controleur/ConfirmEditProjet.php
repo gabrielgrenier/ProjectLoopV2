@@ -11,7 +11,7 @@ class confirmEditProjet implements Action {
             $dao->update($projet);
             return "listeProjets";
         }
-        
+        else {return "listeProjets";}
 	}
 }
 ?>
