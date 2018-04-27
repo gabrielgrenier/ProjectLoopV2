@@ -14,6 +14,14 @@ $nbTacheStat2 = 0;
 $nbTacheAss2 = 0;
 $nbTacheStat3 = 0;
 $nbTacheAss3 = 0;
+$role = "";
+
+$projetRole = $ProjetDao->findAll(); 
+        foreach($projetRole as $projet) {
+            if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="admin"){$role="admin";}
+            if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="modo"){$role="modo";}
+            if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="user"){$role="user";}
+        }
 
 $TacheStat1 = $TacheDao->findByStatut(1); 
 foreach($TacheStat1 as $tache) { 
@@ -38,6 +46,7 @@ foreach($TacheStat3 as $tache) {
         if($tache->getUserAssigned()==$_SESSION["current_user"]){$nbTacheAss3 = $nbTacheAss3 + 1;}
     }
 }
+
 ?>
 
 <head>
@@ -97,16 +106,44 @@ foreach($TacheStat3 as $tache) {
     </div>
     <div class="row" id="userProjet" style="display:none">
         <h3>Liste des utilisateurs : </h3>
-        <?php     
-        $projetTest = $ProjetDao->findAll(); 
-                foreach($projetTest as $projet) {
-                    if($_SESSION["numProjet"]==$projet->getNumProjet()){
-                        echo $projet->getEmail()."<br/>";
-        ?>
-        <?php
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Email :</th>
+                    <th>Rôle :</th>
+                    <th>Actions :</th>
+                </tr>
+            </thead>
+            <?php     
+            $projetTest = $ProjetDao->findAll(); 
+                    foreach($projetTest as $projet) {
+                        if($_SESSION["numProjet"]==$projet->getNumProjet()){
+            ?>
+            <tr>
+                <td><?=$projet->getEmail();?></td>
+                <td><?=$projet->getRole();?></td>
+                <td>
+                <?php if($role=="admin" or $role=="modo"){?>
+                    <?php if($projet->getEmail()!=$_SESSION["current_email"]){?>
+                    <?php if($projet->getRole()=="modo") {?>
+                        <a><span title="Rendre modo" class="glyphicon glyphicon-chevron-down"></span></a>
+                    <?php }
+                        else{
+                    ?>
+                        <a><span title="Rendre modo" class="glyphicon glyphicon-chevron-up"></span></a>
+                    <?php }?>
+                    <a><span title="Retirer le user" class="glyphicon glyphicon-remove-circle"></span></a>
+                <?php 
                     }
                 }
-        ?>
+                ?>
+                </td>
+            </tr>
+            <?php
+                        }
+                    }
+            ?>
+        </table>
     </div>
         
     <div class="row">
