@@ -103,7 +103,7 @@ foreach($TacheStat3 as $tache) {
                     <form action="?action=confirmAddTache" method="post">
                         <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#ff7f7f">
                             <div class="panel-heading" style="background-color:#ff7f7f">
-                                <input type="text" name="titreAdd" id="titreAdd" placeholder="titre" required>
+                                <input type="text" name="titreAdd" id="titreAdd" placeholder="titre" maxlength="30" required>
                                 <input type="hidden" name="numProjetAdd" value="<?=$_SESSION["numProjet"] ?>">
                                 <button type="submit" class="btn btn-primary" style="background-color:#ff7f7f; border-style:none">
                                     <i class="glyphicon glyphicon-ok" style="color:#af0000"></i>
@@ -111,7 +111,7 @@ foreach($TacheStat3 as $tache) {
                                 <a onclick="hideCreateTache()" title="Annuler l'ajout"><span class="glyphicon glyphicon-remove" style="color:#af0000"></span></a>
                             </div>
                             <div class="panel-body">
-                                <textarea name="descriptionAdd" id="descriptionAdd" placeholder="description" name="descriptionEdit"></textarea> <br/>
+                                <textarea name="descriptionAdd" id="descriptionAdd" placeholder="description" name="descriptionEdit" maxlength="80"></textarea> <br/>
                                 <input type="date" name="dateAdd" id="dateAdd" required> <br/>
                             </div>      
                         </div>
