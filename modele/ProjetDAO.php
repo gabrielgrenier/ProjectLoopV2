@@ -109,7 +109,23 @@ class ProjetDAO{
         }
         catch (PDOException $ex){
         }       
-    }  
+    }
+    public static function update($projet){
+        $db = Database::getInstance();
+        $n = 0;
+        try {
+            $pstmt = $db->prepare("UPDATE userProjets SET NOMPROJET=:nom WHERE NUMPROJET=:num");
+            $n = $pstmt->execute(array(':nom' => $projet->getNomProjet(),
+                                        ':num' => $projet->getNumProjet()));
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;			
+    }
     
     
     

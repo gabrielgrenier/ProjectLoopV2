@@ -1,9 +1,9 @@
 <script>
-function validationProjet() {
-    var form = document.getElementById("formAddPro");
+function validationProjet(nomForm) {
+    var form = document.getElementById(nomForm);
 
     var valide = true;
-    for(i =0; i < form.length-1; i++){ //-1 a cause du td action
+    for(i =0; i < form.length; i++){
         if(form.elements[i].value==""){
             form.elements[i].style.borderColor="red";
             form.elements[i].focus();

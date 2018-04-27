@@ -33,15 +33,32 @@
                 <td><input type="text" id="addNumPro" name="num" maxlength="5"></td>
                 <input type="hidden" name="user" value="<?=$_SESSION["current_user"]?>">
                 <td>admin</td>
-                <td><a title="Confirmer" onclick="validationProjet()"><span class="glyphicon glyphicon-ok"></span></a>
+                <td><a title="Confirmer" onclick="validationProjet('formAddPro')"><span class="glyphicon glyphicon-ok"></span></a>
                     <a title="Annuler" onclick="hideCreateProjet()"><span class="glyphicon glyphicon-remove"></span></a></td>
             </form>
         </tr>
+        
     <?php //Cherche les tâche à faire
         $projetTest = $ProjetDao->findAll(); 
                 foreach($projetTest as $projet) {
-                    if($_SESSION["current_email"]==$projet->getEmail()){           
+                    if($_SESSION["current_email"]==$projet->getEmail()){
+                        if(isset($_REQUEST["numEdit"]) and $projet->getNumProjet()==$_REQUEST["numEdit"] and $projet->getRole()=="admin"){ //ajouter si le user est le admin de la tache
         ?>
+        <form action="?action=confirmEditPro" method="post" id="formEditPro">
+            <td><input type="text" name="editNomPro" value="<?=$projet->getNomProjet();?>" maxlength="20"></td>
+            <td><?=$projet->getNumProjet();?></td>
+            <td><?=$projet->getRole();?></td>
+            <td>
+                <a href="?action=affProjets" title="Annuler"><span class="glyphicon glyphicon-remove"></span></a>
+                <a onclick="validationProjet('formEditPro')" title="Confirmer"><span class="glyphicon glyphicon-ok"></span></a>
+            </td>
+            <input type="hidden" name="editNumPro" value="<?=$projet->getNumProjet();?>">
+        </form>
+        <?php
+                        }
+                        else{
+        ?>
+        
         <tr>
             <td><?=$projet->getNomProjet();?></td>
             <td><?=$projet->getNumProjet();?></td>
@@ -52,7 +69,8 @@
             <?php }?></td>
         </tr>
     <?php
-                    }  
+                        }  
+                    }
                 }
     ?>
     </table>
