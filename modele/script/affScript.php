@@ -32,4 +32,16 @@ function affStats() {
         btn.innerHTML = "Afficher les statistiques <span class='caret'></span>";
     }
 }
+function affUsers() {
+    var x = document.getElementById("userProjet");
+    var btn = document.getElementById("btnUser");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        btn.innerHTML = "Cacher les utilisateurs <span class='caret'></span>";
+        
+    } else {
+        x.style.display = "none";
+        btn.innerHTML = "Afficher les utilisateurs <span class='caret'></span>";
+    }
+}
 </script>

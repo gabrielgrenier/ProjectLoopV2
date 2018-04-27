@@ -80,6 +80,9 @@ foreach($TacheStat3 as $tache) {
         <button class="btn btn-default" onclick="affStats()" id="btnStats">
             Afficher les statistiques <span class="caret"></span>
         </button>
+        <button class="btn btn-default" onclick="affUsers()" id="btnUser">
+            Afficher les utilisateurs <span class="caret"></span>
+        </button>
     </div>
     
     <div class="row" id="statsProjet" style="display:none"> <!-- Les stats -->
@@ -91,6 +94,19 @@ foreach($TacheStat3 as $tache) {
             <h4 class="titreGraph">Répartition de vos tâches selon leur statut</h4>
             <div id="chart_div"></div>
         </div>
+    </div>
+    <div class="row" id="userProjet" style="display:none">
+        <h3>Liste des utilisateurs : </h3>
+        <?php     
+        $projetTest = $ProjetDao->findAll(); 
+                foreach($projetTest as $projet) {
+                    if($_SESSION["numProjet"]==$projet->getNumProjet()){
+                        echo $projet->getEmail()."<br/>";
+        ?>
+        <?php
+                    }
+                }
+        ?>
     </div>
         
     <div class="row">
