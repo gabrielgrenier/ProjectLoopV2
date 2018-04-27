@@ -64,8 +64,9 @@
             <td><?=$projet->getNumProjet();?></td>
             <td><?=$projet->getRole();?></td>
             <td><a href="?action=setProjet&numPro=<?=$projet->getNumProjet();?>&nomPro=<?=$projet->getNomProjet()?>" title="afficher projet"><span class="glyphicon glyphicon-eye-open"></span></a>
-            <?php if($projet->getRole()=="admin"){?><a href="" title="supprimer le projet"><span class="glyphicon glyphicon-trash"></span></a>
-                                                    <a href="?action=editProjet&numEdit=<?=$projet->getNumProjet()?>" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
+            <?php if($projet->getRole()=="admin"){?>
+                <a href="?action=deletePro&numDelete=<?=$projet->getNumProjet()?>" title="supprimer le projet"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="?action=editProjet&numEdit=<?=$projet->getNumProjet()?>" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
             <?php }?></td>
         </tr>
     <?php
