@@ -3,14 +3,14 @@ require_once('./controleur/Action.interface.php');
 require_once('./modele/TacheDAO.php');
 class EditTacheAction implements Action {
 	public function execute(){
-		$dao = new TacheDAO();
-        if(isset($_REQUEST["titreEdit"]) and isset($_REQUEST["descriptionEdit"]) and isset($_REQUEST["dateEdit"])){//verifie que les champs sont remplis
-            return "listeActivites";
+        $dao = new TacheDao();
+        if(isset($_REQUEST["idEdit"])){
+            $tache = $dao->find($_REQUEST["idEdit"]);
+            if($tache!=null){return "listeActivites";} //si la tache existe, on garde idEdit
         }
-        else{
-            $_REQUEST["action"]="affActivites";
-            return "listeActivites";   
-        }
+        
+        $_REQUEST["action"]="";//si la tache n'existe pas, on desactive l'edit
+		return "listeActivites";
 	}
 }
 ?>
