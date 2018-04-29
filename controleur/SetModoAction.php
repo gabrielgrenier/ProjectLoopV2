@@ -16,7 +16,7 @@ class SetModoAction implements Action {
                 $dao->updateUser($projet);
                 return "listeActivites";
             }
-            return "listeProjets";
+            return "listeActivites";
         }
 	}
 }
