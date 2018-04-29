@@ -17,6 +17,10 @@ img{
     border-color: whitesmoke;
 }
 
+#test{
+    color:aqua;
+}
+
 .navbar{
     background-color:#3A3A3A;
     padding: 0.5% 0;
