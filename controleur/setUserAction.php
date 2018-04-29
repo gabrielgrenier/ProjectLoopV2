@@ -16,7 +16,7 @@ class SetUserAction implements Action {
                 $dao->updateUser($projet);
                 return "listeActivites";
             }
-            return "listeActivtes";
+            return "listeActivites";
         }
 	}
 }
