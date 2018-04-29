@@ -54,6 +54,31 @@ class ProjetDAO{
         }             
         return NULL;
     }
+    public static function findByProjet($projet){
+        $db = Database::getInstance();
+        try {
+            $pstmt = $db->prepare("SELECT * FROM userProjets WHERE EMAIL = :email and NUMPROJET = :num");
+            $pstmt->execute(array(':email' => $projet->getEmail(),
+                                    ':num' => $projet->getNumProjet()));
+
+            $result = $pstmt->fetch(PDO::FETCH_OBJ);
+
+            if ($result){
+                    $p = new Projets();
+                    $p->loadFromObject($result);
+                    $pstmt->closeCursor();
+                    $pstmt = NULL;
+                    Database::close();
+                    return $p;
+            }
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }             
+        return NULL;
+    }
     public static function findAll(){
         $db = Database::getInstance();
         $projet = Array();
@@ -117,6 +142,23 @@ class ProjetDAO{
             $pstmt = $db->prepare("UPDATE userProjets SET NOMPROJET=:nom WHERE NUMPROJET=:num");
             $n = $pstmt->execute(array(':nom' => $projet->getNomProjet(),
                                         ':num' => $projet->getNumProjet()));
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }           
+        return $n;			
+    }
+    public static function updateUser($projet){
+        $db = Database::getInstance();
+        $n = 0;
+        try {
+            $pstmt = $db->prepare("UPDATE userProjets SET ROLEUSER=:role WHERE NUMPROJET=:num and EMAIL=:email");
+            $n = $pstmt->execute(array(':role' => $projet->getRole(),
+                                        ':num' => $projet->getNumProjet(),
+                                        ':email' => $projet->getEmail()));
 
             $pstmt->closeCursor();
             $pstmt = NULL;

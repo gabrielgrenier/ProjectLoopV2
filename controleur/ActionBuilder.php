@@ -21,6 +21,7 @@ require_once('./controleur/AddProjetAction.php');
 require_once('./controleur/EditProjetAction.php');
 require_once('./controleur/ConfirmEditProjet.php');
 require_once('./controleur/DeleteProjetAction.php');
+require_once('./controleur/SetModoAction.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -91,6 +92,9 @@ class ActionBuilder{
             break;
             case "deletePro":
                 return new deleteProjetAction();
+            break;
+            case "setModo":
+                return new setModoAction();
             break;
 			default :
 				return new DefaultAction();
