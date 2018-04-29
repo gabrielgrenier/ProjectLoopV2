@@ -22,6 +22,7 @@ require_once('./controleur/EditProjetAction.php');
 require_once('./controleur/ConfirmEditProjet.php');
 require_once('./controleur/DeleteProjetAction.php');
 require_once('./controleur/SetModoAction.php');
+require_once('./controleur/SetUserAction.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -95,6 +96,9 @@ class ActionBuilder{
             break;
             case "setModo":
                 return new setModoAction();
+            break;
+            case "setUser": //On utilise deux actions pour set les roles pour eviter des failles
+                return new setUserAction();
             break;
 			default :
 				return new DefaultAction();

@@ -126,7 +126,7 @@ foreach($TacheStat3 as $tache) {
                 <?php if($role=="admin" or $role=="modo"){?>
                     <?php if($projet->getEmail()!=$_SESSION["current_email"]){?>
                     <?php if($projet->getRole()=="modo") {?>
-                        <a><span title="Rendre utilisateur" class="glyphicon glyphicon-chevron-down"></span></a>
+                        <a href="?action=setUser&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre utilisateur" ><span class="glyphicon glyphicon-chevron-down"></span></a>
                         <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
                     <?php }
                         else if($projet->getRole()!="admin"){
