@@ -131,14 +131,14 @@ foreach($TacheStat3 as $tache) {
                             <a href="?action=setUser&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre utilisateur">
                                 <span class="glyphicon glyphicon-chevron-down"></span>
                             </a>
-                            <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                            <a a href="?action=kickUser&user=<?=$projet->getEmail();?>&num=<?=$projet->getNumProjet()?>" title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
                         <?php }
                             else if($projet->getRole()!="admin"){
                         ?>
                             <a href="?action=setModo&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre modo">
                                 <span class="glyphicon glyphicon-chevron-up"></span>
                             </a>
-                            <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                            <a href="?action=kickUser&user=<?=$projet->getEmail();?>&num=<?=$projet->getNumProjet()?>" title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
                         <?php }?>
 
                     <?php 

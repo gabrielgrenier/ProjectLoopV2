@@ -183,6 +183,22 @@ class ProjetDAO{
         }             
         return $n;
     }
+    public static function kickUser($projet){
+        $db = Database::getInstance();
+        $n = 0;
+        try {
+            $pstmt = $db->prepare("DELETE FROM userProjets WHERE NUMPROJET=:num and EMAIL=:email");
+            $n = $pstmt->execute(array(':num' => $projet->getNumProjet(),
+                                        ':email' => $projet->getEmail()));
+
+            $pstmt->closeCursor();
+            $pstmt = NULL;
+            Database::close();
+        }
+        catch (PDOException $ex){
+        }             
+        return $n;
+    }
     
     
     
