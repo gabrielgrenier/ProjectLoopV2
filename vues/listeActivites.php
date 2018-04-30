@@ -8,6 +8,7 @@ if($_SESSION["connecte"]==false){header('Location: ?action=default');}
 if(isset($_REQUEST["action"]) and $_REQUEST["action"]!="affActivites" and $_REQUEST["action"]!="editTache"){ //pour avoir le meme url
     header('Location: ?action=affActivites');
 }
+
 date_default_timezone_set('America/Toronto');
 $nbTacheStat1 = 0;
 $nbTacheAss1 = 0;

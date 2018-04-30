@@ -6,10 +6,21 @@ class AddUserAction implements Action {
 	public function execute(){
         $UserDao = new UserDAO();
         $ProjetDao = new ProjetDao();
-        $numPro = $_REQUEST["num"];
-        $nomPro = $_REQUEST["nom"];
-        $user = $UserDao->findByUsername($_REQUEST["addUsername"]);
-        if($user!=null){$ProjetDao->addUserProjet($user, $numPro, $nomPro);}
+        if(isset($_REQUEST["num"])&&isset($_REQUEST["nom"])){
+            $numPro = $_REQUEST["num"];
+            $nomPro = $_REQUEST["nom"];
+
+            $user = $UserDao->findByUsername($_REQUEST["addUsername"]);
+            
+            if($user!=null){ //si le user existe dans la bd
+                $proTemp = new Projets();
+                $proTemp->setEmail($user->getEmail());
+                $proTemp->setNumProjet($numPro);
+                $projet = $ProjetDao->findByProjet($proTemp);
+                
+                if($projet==null){$ProjetDao->addUserProjet($user, $numPro, $nomPro);} //si le projet n'existe pas
+            }
+        }
         return "listeActivites";
 	}
 }
