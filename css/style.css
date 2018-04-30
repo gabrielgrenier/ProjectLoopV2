@@ -17,8 +17,9 @@ img{
     border-color: whitesmoke;
 }
 
-#test{
-    color:aqua;
+.retard{
+    color:red;
+    font-weight:bold
 }
 
 .navbar{
@@ -162,4 +163,9 @@ footer p{
 #imgAccueil{
     border-style:none;
     max-width: 100%;
+}
+
+#numProjet{
+    font-style: italic; 
+    color:grey;
 }

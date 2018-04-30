@@ -59,7 +59,7 @@ foreach($TacheStat3 as $tache) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="./css/style.css" rel="stylesheet" />
+    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
 </head>
 <body>
@@ -74,7 +74,7 @@ foreach($TacheStat3 as $tache) {
         <a href="?action=affProjets" title="Retour à la liste de projet"><span class="glyphicon glyphicon-menu-left"></span></a>
         <?php echo $_SESSION["current_projet"]; ?>
     </h1>
-    <h3 style="font-style: italic; color:grey;">Numero de projet : <?php echo $_SESSION["numProjet"]; ?></h3>
+    <h3 id="numProjet">Numéro de projet : <?php echo $_SESSION["numProjet"]; ?></h3>
     
     <div class="dropdown"> <!--Menu d'Ajout de user au projet-->
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -203,7 +203,7 @@ foreach($TacheStat3 as $tache) {
                             <a href='?action=attribuer&id=<?=$tache->getId()?>&user=<?php echo $_SESSION["current_user"];?>' title="S'attribuer la tâche" style="color:#ff7f7f"><span class="glyphicon glyphicon-user"></span></a>
                         <?php } 
                             else{echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";} //si la tâche est déjà attribuée
-                            if($tache->getDateFin() < $today){echo "<br/><p class='retard' style='color:red;font-weight:bold;'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
+                            if($tache->getDateFin() < $today){echo "<br/><p class='retard'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
                         ?>
                     </div>
                 </div>
@@ -252,7 +252,7 @@ foreach($TacheStat3 as $tache) {
                             <a href='?action=moveT&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-right"></span></a>
                         <?php } 
                             if($tache->getUserAssigned()!=$_SESSION["current_user"]){echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";}
-                            if($tache->getDateFin() < $today){echo "<p class='retard' style='color:red;font-weight:bold;'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
+                            if($tache->getDateFin() < $today){echo "<p class='retard'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
                         ?>
                     </div>
                 </div> 
