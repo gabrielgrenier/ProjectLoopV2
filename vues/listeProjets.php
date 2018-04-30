@@ -40,9 +40,9 @@
         
     <?php //Cherche les tâche à faire
         $projetTest = $ProjetDao->findAll(); 
-                foreach($projetTest as $projet) {
-                    if($_SESSION["current_email"]==$projet->getEmail()){
-                        if(isset($_REQUEST["numEdit"]) and $projet->getNumProjet()==$_REQUEST["numEdit"] and $projet->getRole()=="admin"){ //ajouter si le user est le admin de la tache
+            foreach($projetTest as $projet) {
+                if($_SESSION["current_email"]==$projet->getEmail()){
+                    if(isset($_REQUEST["numEdit"]) and $projet->getNumProjet()==$_REQUEST["numEdit"] and $projet->getRole()=="admin"){ //ajouter si le user est le admin de la tache
         ?>
         <form action="?action=confirmEditPro" method="post" id="formEditPro">
             <td><input type="text" name="editNomPro" value="<?=$projet->getNomProjet();?>" maxlength="20"></td>
@@ -55,8 +55,8 @@
             <input type="hidden" name="editNumPro" value="<?=$projet->getNumProjet();?>">
         </form>
         <?php
-                        }
-                        else{
+                    }
+                    else{
         ?>
         
         <tr>
@@ -70,9 +70,9 @@
             <?php }?></td>
         </tr>
     <?php
-                        }  
-                    }
+                    }  
                 }
+            }
     ?>
     </table>
 </div>

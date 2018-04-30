@@ -116,34 +116,38 @@ foreach($TacheStat3 as $tache) {
             </thead>
             <?php     
             $projetTest = $ProjetDao->findAll(); 
-                    foreach($projetTest as $projet) {
-                        if($_SESSION["numProjet"]==$projet->getNumProjet()){
+                foreach($projetTest as $projet) {
+                    if($_SESSION["numProjet"]==$projet->getNumProjet()){
             ?>
-            <tr>
-                <td><?=$projet->getEmail();?></td>
-                <td><?=$projet->getRole();?></td>
-                <td>
-                <?php if($role=="admin" or $role=="modo"){?>
-                    <?php if($projet->getEmail()!=$_SESSION["current_email"]){?>
-                    <?php if($projet->getRole()=="modo") {?>
-                        <a href="?action=setUser&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre utilisateur" ><span class="glyphicon glyphicon-chevron-down"></span></a>
-                        <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
-                    <?php }
-                        else if($projet->getRole()!="admin"){
-                    ?>
-                        <a href="?action=setModo&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre modo"><span class="glyphicon glyphicon-chevron-up"></span></a>
-                        <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
-                    <?php }?>
-                    
-                <?php 
-                    }
-                }
-                ?>
-                </td>
-            </tr>
-            <?php
+                <tr>
+                    <td><?=$projet->getEmail();?></td>
+                    <td><?=$projet->getRole();?></td>
+                    <td>
+                    <?php if($role=="admin" or $role=="modo"){?>
+                        <?php if($projet->getEmail()!=$_SESSION["current_email"]){?>
+                        <?php if($projet->getRole()=="modo") {?>
+                            <a href="?action=setUser&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre utilisateur">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                        <?php }
+                            else if($projet->getRole()!="admin"){
+                        ?>
+                            <a href="?action=setModo&user=<?=$projet->getEmail();?>&projet=<?=$_SESSION["numProjet"]?>" title="Rendre modo">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </a>
+                            <a title="Retirer le user"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                        <?php }?>
+
+                    <?php 
                         }
                     }
+                    ?>
+                    </td>
+                </tr>
+            <?php
+                    }
+                }
             ?>
         </table>
     </div>
@@ -203,13 +207,14 @@ foreach($TacheStat3 as $tache) {
                             <a href='?action=attribuer&id=<?=$tache->getId()?>&user=<?php echo $_SESSION["current_user"];?>' title="S'attribuer la tâche" style="color:#ff7f7f"><span class="glyphicon glyphicon-user"></span></a>
                         <?php } 
                             else{echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";} //si la tâche est déjà attribuée
-                            if($tache->getDateFin() < $today){echo "<br/><p class='retard'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
+                            if($tache->getDateFin() < $today){echo "<p class='retard'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
                         ?>
                     </div>
                 </div>
             <?php
                     }
-                if(isset($_REQUEST['idEdit']) and $tache->getID()==$_REQUEST['idEdit'] and $tache->getUserAssigned()==$_SESSION["current_user"]){ ?> <!--Si on a une tache a edit + verifie que cest le bon user-->
+                //vérifie si on a le bon user avant d'edit une tâche
+                if(isset($_REQUEST['idEdit']) and $tache->getID()==$_REQUEST['idEdit'] and $tache->getUserAssigned()==$_SESSION["current_user"]){ ?> 
                     <form action="?action=confirmEditTache&id=<?=$tache->getId()?>" method="post">
                         <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#ff7f7f">
                             <div class="panel-heading" style="background-color:#ff7f7f">
@@ -251,7 +256,7 @@ foreach($TacheStat3 as $tache) {
                             <a href='?action=moveAF&id=<?=$tache->getId()?>' title='Déplacer vers "À Faire"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-left"></span></a>
                             <a href='?action=moveT&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-right"></span></a>
                         <?php } 
-                            if($tache->getUserAssigned()!=$_SESSION["current_user"]){echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";}
+                            else{echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";} //si la tâche est déjà attribuée
                             if($tache->getDateFin() < $today){echo "<p class='retard'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
                         ?>
                     </div>
