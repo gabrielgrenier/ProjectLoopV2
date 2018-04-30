@@ -4,9 +4,10 @@ require_once('./modele/TacheDAO.php');
 class DeleteTacheAction implements Action {
 	public function execute(){
         $dao = new TacheDAO();
-        $id = $_REQUEST['id'];
-        $tache = $dao->find($id);
-        if($tache!=null){$dao->delete($tache);}
+        if(isset($_REQUEST['id'])){
+            $tache = $dao->find($_REQUEST['id']);
+            if($tache!=null and $tache->getUserAssigned()==$_SESSION["current_user"]){$dao->delete($tache);}
+        }
 		return "listeActivites";
 	}
 }
