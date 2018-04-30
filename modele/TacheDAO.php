@@ -70,6 +70,26 @@ class TacheDAO {
             }             
             return $taches;
     }
+    public static function findByUser($username){
+            $db = Database::getInstance();
+            $taches = Array();
+            try {
+                $pstmt = $db->prepare("SELECT * FROM taches WHERE USERASSIGNED=:u");
+                $pstmt->execute(array(':u' => $username));
+
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ)){
+                        $t = new Taches();
+                        $t->loadFromObject($result);
+                        array_push($taches, $t);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $taches;
+    }
     public static function delete($tache){
             $db = Database::getInstance();
 			$n = 0;

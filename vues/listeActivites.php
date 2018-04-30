@@ -258,7 +258,9 @@ foreach($TacheStat3 as $tache) {
                             <a href='?action=moveAF&id=<?=$tache->getId()?>' title='Déplacer vers "À Faire"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-left"></span></a>
                             <a href='?action=moveT&id=<?=$tache->getId()?>' title='Déplacer vers "En Cours"' style="color:#fffc7f"><span class="glyphicon glyphicon-arrow-right"></span></a>
                         <?php } 
-                            else{echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";} //si la tâche est déjà attribuée
+                            else if($tache->getUserAssigned()!=$_SESSION["current_user"] && $tache->getUserAssigned()!=""){
+                                echo "<p style='font-style:italic; color:gray;'>tâche attribuée à ".$tache->getUserAssigned()."</p>";
+                            } //si la tâche est déjà attribuée
                             if($tache->getDateFin() < $today){echo "<p class='retard'>tâche en retard</p>";} //si la tache est en retard (css marche pas)
                         ?>
                     </div>
