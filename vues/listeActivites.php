@@ -20,11 +20,13 @@ $role = "";
 $today = date("Y-m-d");
 
 $projetRole = $ProjetDao->findAll(); 
-        foreach($projetRole as $projet) {
-            if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="admin"){$role="admin";}
-            if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="modo"){$role="modo";}
-            if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="user"){$role="user";}
-        }
+foreach($projetRole as $projet){
+    if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="admin"){$role="admin";}
+    if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="modo"){$role="modo";}
+    if($projet->getEmail()==$_SESSION["current_email"] and $projet->getRole()=="user"){$role="user";}
+}
+
+if($role==""){header('Location: ?action=default');}
 
 $TacheStat1 = $TacheDao->findByStatut(1); 
 foreach($TacheStat1 as $tache) { 

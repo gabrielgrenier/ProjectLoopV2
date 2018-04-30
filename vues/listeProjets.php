@@ -27,7 +27,7 @@
                 <th>Actions :</th>
             </tr>
         </thead>
-        <tr style="display:none" id="createProjet">
+        <tr style="display:none" id="createProjet"> <!--si on creer un projet-->
             <form action="?action=addProjet" method="post" id="formAddPro">
                 <td><input type="text" id="addNomPro" name="nom" maxlength="20" placeholder=""></td>
                 <td><input type="text" id="addNumPro" name="num" maxlength="5"></td>
@@ -38,13 +38,13 @@
             </form>
         </tr>
         
-    <?php //Cherche les tâche à faire
+    <?php //Cherche les projets a afficher
         $projetTest = $ProjetDao->findAll(); 
             foreach($projetTest as $projet) {
                 if($_SESSION["current_email"]==$projet->getEmail()){
                     if(isset($_REQUEST["numEdit"]) and $projet->getNumProjet()==$_REQUEST["numEdit"] and $projet->getRole()=="admin"){ //ajouter si le user est le admin de la tache
         ?>
-        <form action="?action=confirmEditPro" method="post" id="formEditPro">
+        <form action="?action=confirmEditPro" method="post" id="formEditPro"> <!--si on edit un projet-->
             <td><input type="text" name="editNomPro" value="<?=$projet->getNomProjet();?>" maxlength="20"></td>
             <td><?=$projet->getNumProjet();?></td>
             <td><?=$projet->getRole();?></td>
@@ -63,7 +63,7 @@
             <td><?=$projet->getNomProjet();?></td>
             <td><?=$projet->getNumProjet();?></td>
             <td><?=$projet->getRole();?></td>
-            <td><a href="?action=setProjet&numPro=<?=$projet->getNumProjet();?>&nomPro=<?=$projet->getNomProjet()?>" title="afficher projet"><span class="glyphicon glyphicon-eye-open"></span></a>
+            <td><a href="?action=setProjet&numPro=<?=$projet->getNumProjet()?>" title="afficher projet"><span class="glyphicon glyphicon-eye-open"></span></a>
             <?php if($projet->getRole()=="admin"){?>
                 <a href="?action=deletePro&numDelete=<?=$projet->getNumProjet()?>" title="supprimer le projet"><span class="glyphicon glyphicon-trash"></span></a>
                 <a href="?action=editProjet&numEdit=<?=$projet->getNumProjet()?>" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
