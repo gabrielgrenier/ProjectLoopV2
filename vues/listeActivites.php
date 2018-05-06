@@ -224,7 +224,6 @@ foreach($TacheStat3 as $tache) {
                 if(isset($_REQUEST['idEdit']) and $tache->getID()==$_REQUEST['idEdit']){ 
                     if($tache->getUserAssigned()==$_SESSION["current_user"] or $role=="admin" or $role=="modo"){
             ?> 
-                    
                     <form action="?action=confirmEditTache&id=<?=$tache->getId()?>" method="post">
                         <div class="panel panel-info col-lg-10 col-md-10 col-sm-10 col-xs-12" style="border-color:#ff7f7f">
                             <div class="panel-heading" style="background-color:#ff7f7f">
@@ -238,16 +237,15 @@ foreach($TacheStat3 as $tache) {
                                 <textarea name="descriptionEdit" placeholder="description" name="descriptionEdit"><?=$tache->getDescription()?></textarea> <br/>
                                 <input type="date" name="dateEdit" value="<?=$tache->getDateFin()?>" required> <br>
                                 Assigner la tâche à : 
-                                <select>
+                                <select id="selectUser" onchange="selectValue();">
                                 <option value="<?=$tache->getUserAssigned();?>"><?=$tache->getUserAssigned();?></option>
                                 <?php
-                                    if($role=="admin" or $role=="modo"){
+                                    if($role=="admin" or $role=="modo"){ //si le currentUser est admin/modo, peut assigner tâche
                                         $projetTest = $ProjetDao->findAll(); 
                                             foreach($projetTest as $projet) {
                                                 if($_SESSION["numProjet"]==$projet->getNumProjet()){
                                                     $user = $UserDao->find($projet->getEmail());
-                                                    if($user->getUsername()!=$tache->getUserAssigned()){
-                                                        
+                                                    if($user->getUsername()!=$tache->getUserAssigned()){   
                                     ?>
                                     <option value="<?= $user->getUsername(); ?>"><?= $user->getUsername(); ?></option>
                                    <?php
@@ -257,6 +255,7 @@ foreach($TacheStat3 as $tache) {
                                         }
                                     ?>
                                 </select> <br/> <br/>
+                                <input type="hidden" id="userAssignedEdit" name="userAssignedEdit" value="<?=$tache->getUserAssigned();?>">
                                 <a href="?action=deleteTache&id=<?=$tache->getId()?>" title="Supprimer la tâche"><span class="glyphicon glyphicon-trash" style="color:#ff7f7f"></span></a>
                             </div>      
                         </div>
@@ -341,4 +340,6 @@ foreach($TacheStat3 as $tache) {
     include("./modele/script/columnChart.php");
     //scripts de onClick display stats
     include("./modele/script/affScript.php");
+    //script de selection de valeur
+    include("./modele/script/selectValue.php")
 ?>
