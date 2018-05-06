@@ -8,10 +8,12 @@ class ConfirmEditTache implements Action {
         $titre = $_REQUEST['titreEdit'];
         $description = $_REQUEST['descriptionEdit'];
         $date = $_REQUEST['dateEdit'];
+        $userAssigned = $_REQUEST['userAssignedEdit'];
         $tache = $dao->find($id);
         $tache->setTitre($titre);
         $tache->setDescription($description);
         $tache->setDateFin($date);
+        $tache->setUserAssigned($userAssigned);
         $dao->update($tache);
 		return "listeActivites";
 	}
