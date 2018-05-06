@@ -79,6 +79,7 @@ foreach($TacheStat3 as $tache) {
     <h3 id="numProjet">Numéro de projet : <?php echo $_SESSION["numProjet"]; ?></h3>
     
     <div class="dropdown"> <!--Menu d'Ajout de user au projet-->
+        <?php if($role=="admin" or $role=="modo"){ ?>
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
               Ajouter des utilisateurs
         <span class="caret"></span></button>
@@ -88,6 +89,7 @@ foreach($TacheStat3 as $tache) {
                 <input type="submit" value="Ajouter"/>
             </form>
         </ul>
+        <?php }?>
         <button class="btn btn-default" onclick="affStats()" id="btnStats">
             Afficher les statistiques <span class="caret"></span>
         </button>
