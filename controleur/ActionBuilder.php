@@ -24,6 +24,7 @@ require_once('./controleur/DeleteProjetAction.php');
 require_once('./controleur/SetModoAction.php');
 require_once('./controleur/SetUserAction.php');
 require_once('./controleur/KickUserAction.php');
+require_once('./controleur/ResetAlertAction.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -103,6 +104,9 @@ class ActionBuilder{
             break;
             case "kickUser": //On utilise deux actions pour set les roles pour eviter des failles
                 return new kickUserAction();
+            break;
+            case "resetAlert":
+                return new ResetAlertAction();
             break;
 			default :
 				return new DefaultAction();

@@ -9,10 +9,16 @@ class confirmEditProjet implements Action {
             $projet->setNomProjet($_REQUEST["editNomPro"]);
             $projet->setNumProjet($_REQUEST["editNumPro"]);
             $dao->update($projet);
+            
+            $_SESSION["alert"]->setType("pos");
+            $_SESSION["alert"]->setMessage("Le projet a été modifié.");
             return "listeProjets";
         }
-        else {return "listeProjets";}
+        else {
+            $_SESSION["alert"]->setType("neg");
+            $_SESSION["alert"]->setMessage("Le projet n'a pas pu être édité.");
+            return "listeProjets";
+        }
 	}
 }
 ?>
-

@@ -15,7 +15,29 @@
     include("./vues/menuPasCo.php");
 ?>
 <br/><br/>
+    
 <div class="container">
+    <?php //Les différentes alerts 
+    if(isset($_SESSION["alert"])){
+        if($_SESSION["alert"]->getType()=="pos"){
+            ?>
+            <div class="alert alert-success" style="margin-top:5em;">
+                <strong>Succès!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
+                <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
+            </div>
+    <?php
+        }
+    if($_SESSION["alert"]->getType()=="neg"){
+            ?>
+            <div class="alert alert-danger" style="margin-top:5em;">
+                <strong>Erreur!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
+                <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
+            </div>
+    <?php
+        }
+    }
+    ?>
+    
     <h1 style="padding-top:2em;">Mes Projets :</h1>
     <button class="btn btn-default" onclick="affCreateProjet()" id="btnAddProjet">Ajouter un Projet</button>
     <table class="table table-hover">
@@ -37,7 +59,6 @@
                     <a title="Annuler" onclick="hideCreateProjet()"><span class="glyphicon glyphicon-remove"></span></a></td>
             </form>
         </tr>
-        
     <?php //Cherche les projets a afficher
         $projetTest = $ProjetDao->findAll(); 
             foreach($projetTest as $projet) {
@@ -58,7 +79,6 @@
                     }
                     else{
         ?>
-        
         <tr>
             <td><?=$projet->getNomProjet();?></td>
             <td><?=$projet->getNumProjet();?></td>

@@ -6,7 +6,7 @@ class DeleteProjetAction implements Action {
 	public function execute(){
         $projetDao = new ProjetDAO();
         $tacheDao = new TacheDAO();
-        if(isset($_REQUEST['numDelete'])){
+        if(isset($_REQUEST['numDelete']) and $_REQUEST['numDelete']!=""){
             $proTemp = new Projets();
             $proTemp->setEmail($_SESSION['current_email']);
             $proTemp->setNumProjet($_REQUEST['numDelete']);
@@ -15,7 +15,18 @@ class DeleteProjetAction implements Action {
             if($projet!=null and $projet->getRole()=="admin"){
                 $projetDao->delete($projet);
                 $tacheDao->deleteByNum($projet);
+                
+                $_SESSION["alert"]->setMessage("Le projet à été supprimé.");
+                $_SESSION["alert"]->setType("pos");
             }
+            else{
+                $_SESSION["alert"]->setType("neg");
+                $_SESSION["alert"]->setMessage("Vous devez être admin du projet pour le supprimer.");
+            }
+        }
+        else{
+            $_SESSION["alert"]->setType("neg");
+            $_SESSION["alert"]->setMessage("Vous devez entrer un numero de projet.");
         }
 		return "listeProjets";
 	}
