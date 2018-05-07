@@ -65,7 +65,7 @@
             <td><?=$projet->getRole();?></td>
             <td><a href="?action=setProjet&numPro=<?=$projet->getNumProjet()?>" title="afficher projet"><span class="glyphicon glyphicon-eye-open"></span></a>
             <?php if($projet->getRole()=="admin"){?>
-                <a href="?action=deletePro&numDelete=<?=$projet->getNumProjet()?>" title="supprimer le projet"><span class="glyphicon glyphicon-trash"></span></a>
+                <a id="delProjet" title="supprimer le projet" onclick="confirmation('?action=deletePro&numDelete=<?=$projet->getNumProjet()?>')"><span class="glyphicon glyphicon-trash"></span></a>
                 <a href="?action=editProjet&numEdit=<?=$projet->getNumProjet()?>" title="modifier le projet"><span class="glyphicon glyphicon-edit"></span></a>
             <?php }?></td>
         </tr>
@@ -81,4 +81,5 @@
 <?php
     include("./modele/script/affScript.php");
     include("./modele/script/validationScript.php");
+    include("./modele/script/confirmation.php");
 ?>
