@@ -17,15 +17,15 @@ class DeleteProjetAction implements Action {
                 $tacheDao->deleteByNum($projet);
                 
                 $_SESSION["alert"]->setMessage("Le projet à été supprimé.");
-                $_SESSION["alert"]->setType("pos");
+                $_SESSION["alert"]->setType("posPro");
             }
             else{
-                $_SESSION["alert"]->setType("neg");
+                $_SESSION["alert"]->setType("negPro");
                 $_SESSION["alert"]->setMessage("Vous devez être admin du projet pour le supprimer.");
             }
         }
         else{
-            $_SESSION["alert"]->setType("neg");
+            $_SESSION["alert"]->setType("negPro");
             $_SESSION["alert"]->setMessage("Vous devez entrer un numero de projet.");
         }
 		return "listeProjets";

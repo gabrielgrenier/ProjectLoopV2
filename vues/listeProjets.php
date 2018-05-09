@@ -19,7 +19,7 @@
 <div class="container">
     <?php //Les différentes alerts 
     if(isset($_SESSION["alert"])){
-        if($_SESSION["alert"]->getType()=="pos"){
+        if($_SESSION["alert"]->getType()=="posPro"){
             ?>
             <div class="alert alert-success" style="margin-top:5em;">
                 <strong>Succès!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
@@ -27,7 +27,7 @@
             </div>
     <?php
         }
-    if($_SESSION["alert"]->getType()=="neg"){
+    if($_SESSION["alert"]->getType()=="negPro"){
             ?>
             <div class="alert alert-danger" style="margin-top:5em;">
                 <strong>Erreur!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>

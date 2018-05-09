@@ -7,6 +7,7 @@ class LogoutAction implements Action {
         UNSET($_SESSION["current_email"]);
         UNSET($_SESSION["current_projet"]);
         UNSET($_SESSION["numProjet"]);
+        UNSET($_SESSION["alert"]);
 		session_destroy();
 		return "default";
 	}

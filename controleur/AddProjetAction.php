@@ -17,8 +17,24 @@ class AddProjetAction implements Action {
                 $projet->setNomProjet($nomPro);
 
                 $user = $UserDao->findByUsername($_REQUEST["user"]);
-                if($user!=null){$ProjetDao->create($projet, $user);}
+                if($user!=null){
+                    $ProjetDao->create($projet, $user);
+                    $_SESSION["alert"]->setType("posPro");
+                    $_SESSION["alert"]->setMessage("Votre projet a été créé.");
+                }
+                else{
+                    $_SESSION["alert"]->setType("negPro");
+                    $_SESSION["alert"]->setMessage("Votre compte n'existe pas.");
+                }
             }
+            if($confirm!=null){
+                $_SESSION["alert"]->setType("negPro");
+                $_SESSION["alert"]->setMessage("Le numéro de projet est déjà utilisé.");
+            }
+        }
+        else{
+            $_SESSION["alert"]->setType("negPro");
+            $_SESSION["alert"]->setMessage("Vous devez entrer un nom et un numéro de projet valide.");
         }
         return "listeProjets";
 	}
