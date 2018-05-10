@@ -72,6 +72,26 @@ foreach($TacheStat3 as $tache) {
 </div>
 
 <div class="container" style="padding-top:100px; padding-bottom:462px;">
+    <?php //Les différentes alerts 
+    if(isset($_SESSION["alert"])){
+        if($_SESSION["alert"]->getType()=="posTache"){
+            ?>
+            <div class="alert alert-success">
+                <strong>Succès!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
+                <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
+            </div>
+    <?php
+        }
+    if($_SESSION["alert"]->getType()=="negTache"){
+            ?>
+            <div class="alert alert-danger">
+                <strong>Erreur!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
+                <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
+            </div>
+    <?php
+        }
+    }
+    ?>
     <h1>
         <a href="?action=affProjets" title="Retour à la liste de projet"><span class="glyphicon glyphicon-menu-left"></span></a>
         <?php echo $_SESSION["current_projet"]; ?>
