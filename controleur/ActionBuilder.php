@@ -110,7 +110,7 @@ class ActionBuilder{
                 return new ResetAlertAction();
             break;
             case "resetAlertTache":
-                return new ResetAlertAction();
+                return new ResetAlertTacheAction();
             break;
 			default :
 				return new DefaultAction();
