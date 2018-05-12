@@ -13,21 +13,27 @@
 <?php
     if(isset($_REQUEST["action"]) and $_REQUEST["action"]!="affProjets" and $_REQUEST["action"]!="editProjet"){header('Location: ?action=affProjets');}
     include("./vues/menuPasCo.php");
+    
+    //supprimer les alertes de tache
+    if(isset($_SESSION["alert"]) and $_SESSION["alert"]->getType()=="posTache" or $_SESSION["alert"]->getType()=="negTache"){
+        $_SESSION["alert"]->setType("");
+        $_SESSION["alert"]->setMessage("");
+    }
 ?>
 <br/><br/>
     
-<div class="container">
+<div class="container" style="padding-top:100px; padding-bottom:462px;">
     <?php //Les différentes alerts 
     if(isset($_SESSION["alert"])){
         if($_SESSION["alert"]->getType()=="posPro"){
             ?>
-            <div class="alert alert-success" style="margin-top:5em;">
+            <div class="alert alert-success">
                 <strong>Succès!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
                 <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
             </div>
     <?php
         }
-    if($_SESSION["alert"]->getType()=="negPro"){
+        if($_SESSION["alert"]->getType()=="negPro"){
             ?>
             <div class="alert alert-danger" style="margin-top:5em;">
                 <strong>Erreur!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
@@ -37,8 +43,7 @@
         }
     }
     ?>
-    
-    <h1 style="padding-top:2em;">Mes Projets :</h1>
+    <h1>Mes Projets :</h1>
     <button class="btn btn-default" onclick="affCreateProjet()" id="btnAddProjet">Ajouter un Projet</button>
     <table class="table table-hover">
         <thead>

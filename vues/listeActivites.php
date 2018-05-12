@@ -52,6 +52,12 @@ foreach($TacheStat3 as $tache) {
     }
 }
 
+//supprimer les alertes de projet
+if(isset($_SESSION["alert"]) and $_SESSION["alert"]->getType()=="posPro" or $_SESSION["alert"]->getType()=="negPro"){
+    $_SESSION["alert"]->setType("");
+    $_SESSION["alert"]->setMessage("");
+}
+
 ?>
 
 <head>
