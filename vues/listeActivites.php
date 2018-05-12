@@ -84,7 +84,7 @@ if(isset($_SESSION["alert"]) and $_SESSION["alert"]->getType()=="posPro" or $_SE
             ?>
             <div class="alert alert-success">
                 <strong>Succès!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
-                <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
+                <a href="?action=resetAlertTache" class="close" data-dismiss="alert" title="fermer">x</a>
             </div>
     <?php
         }
@@ -92,7 +92,7 @@ if(isset($_SESSION["alert"]) and $_SESSION["alert"]->getType()=="posPro" or $_SE
             ?>
             <div class="alert alert-danger">
                 <strong>Erreur!</strong> <?php echo $_SESSION["alert"]->getMessage(); ?>
-                <a href="?action=resetAlert" class="close" data-dismiss="alert" title="fermer">x</a>
+                <a href="?action=resetAlertTache" class="close" data-dismiss="alert" title="fermer">x</a>
             </div>
     <?php
         }

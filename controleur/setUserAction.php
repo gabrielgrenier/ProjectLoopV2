@@ -16,8 +16,7 @@ class SetUserAction implements Action {
                     $projetTemp2->setEmail($_REQUEST["user"]);
                     $projetTemp2->setNumProjet($_REQUEST["projet"]);
 
-
-                    $projet = $dao->findByProjet($projetTemp);
+                    $projet = $dao->findByProjet($projetTemp2);
                     if($projet!=null){
                         $projet->setRole("user");
                         $dao->updateUser($projet);

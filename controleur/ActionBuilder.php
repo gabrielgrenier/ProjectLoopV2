@@ -25,6 +25,7 @@ require_once('./controleur/SetModoAction.php');
 require_once('./controleur/SetUserAction.php');
 require_once('./controleur/KickUserAction.php');
 require_once('./controleur/ResetAlertAction.php');
+require_once('./controleur/ResetAlertTacheAction.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -106,6 +107,9 @@ class ActionBuilder{
                 return new kickUserAction();
             break;
             case "resetAlert":
+                return new ResetAlertAction();
+            break;
+            case "resetAlertTache":
                 return new ResetAlertAction();
             break;
 			default :
