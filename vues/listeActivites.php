@@ -264,20 +264,25 @@ if(isset($_SESSION["alert"]) and $_SESSION["alert"]->getType()=="posPro" or $_SE
                                 <input type="date" name="dateEdit" value="<?=$tache->getDateFin()?>" required> <br>
                                 Assigner la tâche à : 
                                 <select id="selectUser" onchange="selectValue();">
-                                <option value="<?=$tache->getUserAssigned();?>"><?=$tache->getUserAssigned();?></option>
-                                <?php
-                                    if($role=="admin" or $role=="modo"){ //si le currentUser est admin/modo, peut assigner tâche
-                                        $projetTest = $ProjetDao->findAll(); 
-                                            foreach($projetTest as $projet) {
-                                                if($_SESSION["numProjet"]==$projet->getNumProjet()){
-                                                    $user = $UserDao->find($projet->getEmail());
-                                                    if($user->getUsername()!=$tache->getUserAssigned()){   
-                                    ?>
-                                    <option value="<?= $user->getUsername(); ?>"><?= $user->getUsername(); ?></option>
-                                   <?php
+                                    <option value="<?=$tache->getUserAssigned();?>"><?=$tache->getUserAssigned();?></option>
+                                    <?php
+                                        if($role=="admin" or $role=="modo"){ //si le currentUser est admin/modo, peut assigner tâche
+                                            $projetTest = $ProjetDao->findAll(); 
+                                                foreach($projetTest as $projet) {
+                                                    if($_SESSION["numProjet"]==$projet->getNumProjet()){
+                                                        $user = $UserDao->find($projet->getEmail());
+                                                        if($user->getUsername()!=$tache->getUserAssigned()){   
+                                        ?>
+                                        <option value="<?= $user->getUsername(); ?>"><?= $user->getUsername(); ?></option>
+                                       <?php
+                                                        }
                                                     }
                                                 }
-                                            }
+                                        }
+                                        if($tache->getUserAssigned()!=""){
+                                    ?>
+                                            <option value=""></option>
+                                    <?php
                                         }
                                     ?>
                                 </select> <br/> <br/>
