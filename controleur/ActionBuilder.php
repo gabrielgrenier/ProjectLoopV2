@@ -17,6 +17,9 @@ require_once('./controleur/ConfirmAddTache.php');
 require_once('./controleur/DeleteTacheAction.php');
 require_once('./controleur/setProjetAction.php');
 require_once('./controleur/AddUserAction.php');
+require_once('./controleur/AffProfilsAction.php');
+require_once('./controleur/ChangerImageAction.php');
+require_once('./controleur/ModifierProfilsAction.php');
 require_once('./controleur/AddProjetAction.php');
 require_once('./controleur/EditProjetAction.php');
 require_once('./controleur/ConfirmEditProjet.php');
@@ -31,9 +34,18 @@ class ActionBuilder{
 	public static function getAction($nomAction){
 		switch ($nomAction)
 		{
+            case "modifierProfils":
+                return new ModifierProfilsAction();
+                break;
             case "connecter" :
 				return new LoginAction();
-			break; 
+			break;
+			case "changerImage" :
+				return new ChangerImageAction();
+			break;
+            case "affProfils":
+                return new AffProfilsAction();
+				break;
 			case "deconnecter" :
 				return new LogoutAction();
 			    break;
