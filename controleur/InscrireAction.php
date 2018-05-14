@@ -15,6 +15,7 @@ class InscrireAction implements Action {
 		$x->setPrenom($_REQUEST["prenom"]);
 		$x->setUsername($_REQUEST["username"]);
 		$x->setPassword($_REQUEST["password"]);
+		$x->setImage("noprofile.png");
 		if(!$dao->create($x)) {
 			if ($dao->isEmail($_REQUEST["email"])){
 				$_REQUEST["field_messages"]["email"] = "Cet email existe d&eacute;j&agrave;";

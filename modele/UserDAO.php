@@ -76,12 +76,38 @@ class UserDAO {
     {
         $db = Database::getInstance();
 
-        $pstmt = $db->prepare("INSERT INTO User (email, pass, username, nom, prenom) VALUES (:e, :p, :u, :no, :pr)");
-        $res = $pstmt->execute(array(':e' => $compte->getEmail(), ':p' => $compte->getPassword(), ':u' => $compte->getUsername(), ':no' => $compte->getNom(), ':pr' => $compte->getPrenom()));
+        $pstmt = $db->prepare("INSERT INTO User (email, pass, username, nom, prenom, image) VALUES (:e, :p, :u, :no, :pr, :im)");
+        $res = $pstmt->execute(array(':e' => $compte->getEmail(), ':p' => $compte->getPassword(), ':u' => $compte->getUsername(), ':no' => $compte->getNom(), ':pr' => $compte->getPrenom(), ':im' => $compte->getImage()));
         
         $pstmt->closeCursor();
 		return $res;
     }
-}
 
+    public function update($x) {
+            $request = "UPDATE User SET username = '".$x->getUsername()."', pass = '".$x->getPassword()."', nom = '".$x->getNom()."', prenom = '".$x->getPrenom()."'".
+                    " WHERE email = '".$x->getEmail()."'";
+            try
+            {
+                $db = Database::getInstance();
+                return $db->exec($request);
+            }
+            catch(PDOException $e)
+            {
+                throw $e;
+            }
+        }
+    public function updateImage($x) {
+        $request = "UPDATE User SET image = '".$x->getImage()."'".
+                " WHERE email = '".$x->getEmail()."'";
+        try
+        {
+            $db = Database::getInstance();
+            return $db->exec($request);
+        }
+        catch(PDOException $e)
+        {
+            throw $e;
+        }
+    }
+}
 ?>
