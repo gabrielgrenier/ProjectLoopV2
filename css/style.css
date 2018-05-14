@@ -17,6 +17,16 @@ img{
     border-color: whitesmoke;
 }
 
+.retard{
+    color:red;
+    font-weight:bold
+}
+
+.attribue{
+    font-style:italic; 
+    color:gray;
+}
+
 .navbar{
     background-color:#3A3A3A;
     padding: 0.5% 0;
@@ -158,4 +168,9 @@ footer p{
 #imgAccueil{
     border-style:none;
     max-width: 100%;
+}
+
+#numProjet{
+    font-style: italic; 
+    color:grey;
 }

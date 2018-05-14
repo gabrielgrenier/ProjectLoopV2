@@ -70,12 +70,47 @@ class TacheDAO {
             }             
             return $taches;
     }
+    public static function findByUser($username){
+            $db = Database::getInstance();
+            $taches = Array();
+            try {
+                $pstmt = $db->prepare("SELECT * FROM taches WHERE USERASSIGNED=:u");
+                $pstmt->execute(array(':u' => $username));
+
+                while ($result = $pstmt->fetch(PDO::FETCH_OBJ)){
+                        $t = new Taches();
+                        $t->loadFromObject($result);
+                        array_push($taches, $t);
+                }
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $taches;
+    }
     public static function delete($tache){
             $db = Database::getInstance();
 			$n = 0;
             try {
                 $pstmt = $db->prepare("DELETE FROM taches WHERE ID=:id");
                 $n = $pstmt->execute(array(':id' => $tache->getId()));
+
+                $pstmt->closeCursor();
+                $pstmt = NULL;
+                Database::close();
+            }
+            catch (PDOException $ex){
+            }             
+            return $n;
+    }
+    public static function deleteByNum($projet){
+            $db = Database::getInstance();
+			$n = 0;
+            try {
+                $pstmt = $db->prepare("DELETE FROM taches WHERE numProjet=:num");
+                $n = $pstmt->execute(array(':num' => $projet->getNumProjet()));
 
                 $pstmt->closeCursor();
                 $pstmt = NULL;

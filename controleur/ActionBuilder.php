@@ -17,7 +17,15 @@ require_once('./controleur/ConfirmAddTache.php');
 require_once('./controleur/DeleteTacheAction.php');
 require_once('./controleur/setProjetAction.php');
 require_once('./controleur/AddUserAction.php');
-
+require_once('./controleur/AddProjetAction.php');
+require_once('./controleur/EditProjetAction.php');
+require_once('./controleur/ConfirmEditProjet.php');
+require_once('./controleur/DeleteProjetAction.php');
+require_once('./controleur/SetModoAction.php');
+require_once('./controleur/SetUserAction.php');
+require_once('./controleur/KickUserAction.php');
+require_once('./controleur/ResetAlertAction.php');
+require_once('./controleur/ResetAlertTacheAction.php');
 
 class ActionBuilder{
 	public static function getAction($nomAction){
@@ -76,6 +84,33 @@ class ActionBuilder{
             break;
             case "addUser":
                 return new addUserAction();
+            break;
+            case "addProjet":
+                return new addProjetAction();
+            break;
+            case "editProjet":
+                return new editProjetAction();
+            break;
+            case "confirmEditPro":
+                return new confirmEditProjet();
+            break;
+            case "deletePro":
+                return new deleteProjetAction();
+            break;
+            case "setModo":
+                return new setModoAction();
+            break;
+            case "setUser": //On utilise deux actions pour set les roles pour eviter des failles
+                return new setUserAction();
+            break;
+            case "kickUser": //On utilise deux actions pour set les roles pour eviter des failles
+                return new kickUserAction();
+            break;
+            case "resetAlert":
+                return new ResetAlertAction();
+            break;
+            case "resetAlertTache":
+                return new ResetAlertTacheAction();
             break;
 			default :
 				return new DefaultAction();
