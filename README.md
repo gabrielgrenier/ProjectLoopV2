@@ -12,7 +12,7 @@ ProjectLoop est un site de gestion de projet, vous pouvez donc :
 *Ceci est la version 2 de notre git*  
 **Créé par Gabriel Braun-Grenier et Maxime Young**  
 
-*Utilisation : 
-*Pour utiliser l'application vous devez integrer la BD a votre server.
-**BD :** http://s000.tinyupload.com/index.php?file_id=38999909928247999637
+Utilisation :__
+Pour utiliser l'application vous devez integrer la BD a votre server.__
+**BD :** http://s000.tinyupload.com/index.php?file_id=38999909928247999637__
 ###### 10/04/2018
