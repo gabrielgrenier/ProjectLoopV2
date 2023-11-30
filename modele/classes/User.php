@@ -6,7 +6,6 @@ class User {
 	private $password = "";
 	private $nom = "";
 	private $prenom = "";
-	private $image = "";
 	
 	public function getEmail()
 	{
@@ -58,15 +57,6 @@ class User {
 			$this->prenom = $x;
 	}
 	
-	public function getImage()
-	{
-			return $this->image;
-	}
-
-	public function setImage($x)
-	{
-			$this->image = $x;
-	}
 	public function loadFromRecord($ligne)
 	{
 		$this->email = $ligne["email"];
@@ -74,7 +64,6 @@ class User {
 		$this->username = $ligne["username"];
 		$this->nom = $ligne["nom"];
 		$this->prenom = $ligne["prenom"];
-		$this->image = $ligne["image"];
 
 	}	
 
@@ -84,7 +73,6 @@ class User {
 		$this->username = $x->username;
 		$this->nom = $x->nom;
 		$this->prenom = $x->prenom;
-		$this->image = $x->image;
     }
 }
 ?>

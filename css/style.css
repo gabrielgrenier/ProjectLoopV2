@@ -170,31 +170,7 @@ footer p{
     max-width: 100%;
 }
 
-#profil{
-  max-height: 50px;
-  border-style: none;
-  border-radius: 0px;
-  margin-top: -5px;
-  margin-right: -20px;
-}
-
-#image{
-    border-style: none;
-    border-radius: 0px;
-}
-#profilAffichage{
-  margin: 70px 10px;
-}
-#compte{
-  margin-left: 15px;
-}
-.title{
-  font-size: 22px;
-}
-.block{
-  margin-left: 15px;
 #numProjet{
     font-style: italic; 
     color:grey;
-
 }

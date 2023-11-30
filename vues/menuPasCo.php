@@ -23,17 +23,12 @@ if($_SESSION["connecte"]){ ?> style="position:absolute; box-shadow: none;"<?php 
                 }
                 else{ ?>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="?action=affProfils"><img id="profil" src="./imagesProfils/<?php echo $_SESSION["current_image"];?>" width="30" height="30" ></a></li> 
-                        <li><a class= "#" href="?action=affProfils"><?php echo $_SESSION["current_nom"]; ?></a></li>
                         <li><a class="#" href="?action=affProjets">Mes Projets</a></li>
+                        <li><a class="#" href="?action=modifProjet">Mon Profile</a></li>
                         <li><a class="#" href="?action=deconnecter">Se Déconnecter</a></li>
-                        
                     </ul>
-
             <?php }?>
             
         </div>
     </div>
 </nav>
-
-<li><a class="#" href="?action=affProfils">Mon Profile</a></li>

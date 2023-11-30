@@ -1,6 +1,5 @@
 <?php
 require_once('./controleur/Action.interface.php');
-require_once('./modele/UserDAO.php');
 class LoginAction implements Action {
 	public function execute(){
 		if (session_status() == PHP_SESSION_NONE) {
@@ -14,7 +13,7 @@ class LoginAction implements Action {
 			return "login";
 		}
 
-		
+		require_once('./modele/UserDAO.php');
 		$udao = new UserDAO();
 		$user = $udao->find($_REQUEST["username"]);
 		if ($user == null)
@@ -29,17 +28,8 @@ class LoginAction implements Action {
 			}
 		/*$_SESSION["connecté"] = $_REQUEST["username"];*/
 		$_SESSION["connecte"] = true;
-		$_SESSION["user"] = $user;
 		$_SESSION["current_email"] = $user->getEmail();
         $_SESSION["current_user"] = $user->getUsername();
-        $_SESSION["current_nom"] = $user->getPrenom()." ".$user->getNom();
-        $_SESSION["modifier"] = false;
-        if($user->getImage() == ""){
-        	$_SESSION["current_image"] = "noprofile.png";
-        }
-        else{
-        	$_SESSION["current_image"] = $user->getImage();
-		}
 		return "default";
 	}
 	public function valide()
